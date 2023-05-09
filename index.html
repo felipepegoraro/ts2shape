@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ts2shape</title>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="app-canvas" width="500" height="500"></canvas>
+
+      <div id="app-config">
+        <!--shape-->
+        <div id="config-shape">
+          <label for="select-shape">Choose a shape:</label>
+          <select id="select-shape" name="shape">
+            <option value="circle">Circle</option>
+            <option value="triangle">Triangle</option>
+            <option value="Rectangle">Rectangle</option>
+            <option value="mandelbrot">Mandelbrot</option>
+          </select>
+        <div>
+        <!--color-->
+        <div id="config-color">
+          <label for="select-color">Select a color:</label>
+          <input type="color" id="select-color" name="cor">
+        </div>
+      </div>
+
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

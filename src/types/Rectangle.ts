@@ -11,7 +11,7 @@ class Rectangle implements Shape {
 
   drawFigure(ctx: CanvasRenderingContext2D): void {
     ctx.beginPath();
-    ctx.fillRect(10, 10, this.L, this.h)
+    ctx.fillRect(0, 0, this.L, this.h)
     ctx.closePath();
     ctx.stroke();
   }

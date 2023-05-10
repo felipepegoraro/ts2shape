@@ -13,7 +13,7 @@ class Mendelbrot implements Shape {
     this.size = canvas_size/2;
     this.iter = maxiter;
     this.trans = {x: -0.5, y: 0} as const;
-    this.zoom = {x: this.size, y: -this.size} as const;
+    this.zoom = {x: this.size/1.1, y: -this.size/1.1} as const;
     console.log(this.zoom)
   }
 
@@ -30,11 +30,11 @@ class Mendelbrot implements Shape {
     const img  = ctx.createImageData(canvas_size, canvas_size);
     const data = img.data;
 
-    const to_run = Array.from({length: canvas_size}, (_, i) => i);
+    const toRun = Array.from({length: canvas_size}, (_, i) => i);
 
-    to_run.forEach((x: number) => {
+    toRun.forEach((x: number) => {
       const cx = (x - this.size) / this.zoom.x + this.trans.x;
-      to_run.forEach((y: number) => {
+      toRun.forEach((y: number) => {
         const c = new Complex(cx, (y-this.size)/this.zoom.y+this.trans.y)
         let count = 0;
         let z = new Complex(0, 0);
@@ -45,13 +45,13 @@ class Mendelbrot implements Shape {
         }
 
         const color = count + 25;
-        const hex = 16;
-        const colorHex = this.colorConvert(color+20, color-10, color + 40);
+        const hexBase = 16;
+        const colorHex = this.colorConvert(color+20, color-10, color+40);
         const pixel = (x + y * img.width) * 4;
 
-        data[pixel]     = parseInt(colorHex.substr(1, 2), hex);
-        data[pixel + 1] = parseInt(colorHex.substr(3, 2), hex);
-        data[pixel + 2] = parseInt(colorHex.substr(5, 2), hex);
+        data[pixel]     = parseInt(colorHex.substr(1, 2), hexBase);
+        data[pixel + 1] = parseInt(colorHex.substr(3, 2), hexBase);
+        data[pixel + 2] = parseInt(colorHex.substr(5, 2), hexBase);
         data[pixel + 3] = 255;
       })
     })
@@ -61,14 +61,10 @@ class Mendelbrot implements Shape {
   getArea(): number | null { return null; }
 
   updateZoomByClick(w: number, h: number, zoom_level: number, dot: Point){
-    const cx = (dot.x - w / zoom_level) / this.zoom.x + this.trans.x;
-    const cy = (dot.y - h / zoom_level) / this.zoom.y + this.trans.y;
-
+    this.trans.x += (dot.x - w / 2) / this.zoom.x;
+    this.trans.y += (dot.y - h / 2) / this.zoom.y;
     this.zoom.x *= zoom_level;
     this.zoom.y *= zoom_level;
-
-    this.trans.x = cx - w / zoom_level / this.zoom.x;
-    this.trans.y = cy - h / zoom_level / this.zoom.y;
   }
 };
 

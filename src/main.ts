@@ -64,7 +64,7 @@ class Main {
       case "circle": this.figure.shape = new Circle(65); break;
       case "triangle": this.figure.shape = new Triangle(75, 75, 75); break;
       case "rectangle": this.figure.shape = new Rectangle(75, 10); break;
-      case "mandelbrot": this.figure.shape = new Mandelbrot(this.context.width, 75); break;
+      case "mandelbrot": this.figure.shape = new Mandelbrot(this.context.width, 300); break;
       default: break;
     }
 
@@ -76,12 +76,12 @@ class Main {
 
   handleClick(canvas: HTMLCanvasElement, event: MouseEvent): void {
     if (this.figure.kind == "mandelbrot"){
-      const zoom_level = 2;
+      const zoomFactor = 1.5;
       const rect = canvas.getBoundingClientRect();
-      const x = event.offsetX - rect.left;
-      const y = event.offsetY - rect.top;
-      this.figure.shape.updateZoomByClick(canvas.width, canvas.height, zoom_level, {x: x, y: y});
-      if (this.context.ctx) this.figure.shape.drawFigure(this.context.ctx);
+      const [x, y] = [event.clientX - rect.left, event.clientY - rect.top];
+      const [w, h] = [canvas.width, canvas.height];
+      this.figure.shape.updateZoomByClick(w, h, zoomFactor, { x, y });
+      this.figure.shape.drawFigure(this.context.ctx);
     }
   }
 }

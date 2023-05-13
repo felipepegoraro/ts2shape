@@ -1,3 +1,3 @@
 - [x]: mandelbrot: corrigir comportamento zoom
 - [ ]: corrigir bug no rectangle
-- [ ]: aplicar cores (bug)
+- [x]: aplicar cores (bug)

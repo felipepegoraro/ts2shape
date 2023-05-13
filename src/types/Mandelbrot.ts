@@ -1,9 +1,8 @@
 import Complex from '../complex'
-import Shape from './Shape'
-
-type Point = { x: number, y: number }
+import Shape, { Point } from './Shape'
 
 class Mendelbrot implements Shape {
+  public  position: Point;
   private size: number;
   private iter: number;
   private trans: Point;
@@ -14,7 +13,9 @@ class Mendelbrot implements Shape {
     this.iter = maxiter;
     this.trans = {x: -0.5, y: 0} as const;
     this.zoom = {x: this.size/1.1, y: -this.size/1.1} as const;
-    console.log(this.zoom)
+    
+    // unused
+    this.position = {x: 300, y: 300};
   }
 
   colorConvert(r: number, g: number, b: number): string {

@@ -1,9 +1,9 @@
-import Shape, { Dot } from "./Shape";
+import Shape, { Point } from "./Shape";
 
 class Rectangle implements Shape {
   private L: number;
   private h: number;
-  position: Dot;
+  position: Point;
 
   constructor(width: number = 75, height: number = 20){
     this.L = width;

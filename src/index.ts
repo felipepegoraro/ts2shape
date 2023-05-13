@@ -26,18 +26,20 @@ shape.addEventListener("change", (_: any) => {
 });
 
 
-let timeOut = null;
+// let timeOut = null;
 const ms = 550;
 
 posX.addEventListener('input', (event) => {
-  timeOut = setTimeout(() => {
+  // timeOut = 
+  setTimeout(() => {
     run.handlePosition(event as InputEvent, "x")
     run.draw(colorSelect.value);
   }, ms);
 });
 
 posY.addEventListener('input', (event) => {
-  timeOut = setTimeout(() => {
+  // timeOut = 
+  setTimeout(() => {
     run.handlePosition(event as InputEvent, "y")
     run.draw(colorSelect.value);
   }, ms);

@@ -1,4 +1,4 @@
-import Shape from './Shape'
+import Shape, { Point } from './Shape'
 
 type TTri = {
   A: number;
@@ -8,18 +8,24 @@ type TTri = {
 
 class Triangle implements Shape {
   private sides: TTri;
+  position: Point;
 
-  constructor(A: number, B: number, C: number){
+  constructor(pos: Point, A: number, B: number, C: number){
     this.sides = {A, B, C} as TTri;
+    this.position = {
+      x: pos.x,
+      y: pos.y
+    }
   }
 
   drawFigure(ctx: CanvasRenderingContext2D){
     const [A, B, C] = [this.sides.A, this.sides.B, this.sides.C];
 
-    const angleC = Math.acos((A * A + B * B - C * C) / (2 * A * B));
-    const angleA = Math.acos((B * B + C * C - A * A) / (2 * B * C));
+    const angleC  = Math.acos((A * A + B * B - C * C) / (2 * A * B));
+    const angleA  = Math.acos((B * B + C * C - A * A) / (2 * B * C));
 
-    const [startX, startY] = [0, 0];
+    const startX  = this.position.x - (A / 2);
+    const startY  = this.position.y - ((B * Math.sin(angleC)) / 2);
 
     const point2X = startX + A;
     const point2Y = startY;

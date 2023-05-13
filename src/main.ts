@@ -2,27 +2,40 @@ import TCanvas from './types/TCanvas';
 import Circle from './types/Circle'
 import Mandelbrot from './types/Mandelbrot'
 import Triangle from './types/Triangle';
-import Rectangle from './types/Rectangle';
+import { Point } from './types/Shape';
+// import Rectangle from './types/Rectangle';
 
 type EasyShapes =
   | { kind:     "circle"; shape:     Circle }
   | { kind:   "triangle"; shape:   Triangle }
-  | { kind:  "rectangle"; shape:  Rectangle }
   | { kind: "mandelbrot"; shape: Mandelbrot }
+//| { kind:  "rectangle"; shape:  Rectangle }
 
 type PossShape = EasyShapes['kind'];
 
 class Main {
   private figure: EasyShapes
   private context: TCanvas;
+  private position: Point;
 
   constructor(){
     this.context = this.getContextWH("app-canvas");
 
+    const [cx, cy] = [this.context.width/2, this.context.height/2]
+    this.position = {x: cx, y: cy};
+
     this.figure = {
       kind: "circle",
-      shape: new Circle(75)
+      shape: new Circle(this.position, 75)
     }
+
+  }
+
+  handlePosition(event: InputEvent, axis: "x" | "y"){
+    const target = event.target as HTMLInputElement;
+    const value = Number(target.value);
+    this.position[axis] = value;
+    console.log(this.position)
   }
 
   getCanvas(id: string): HTMLCanvasElement | never {
@@ -60,9 +73,9 @@ class Main {
 
     switch (this.figure.kind) {
       case "mandelbrot": this.figure.shape = new Mandelbrot(this.context.width, 300); break;
-      case "circle":     this.figure.shape = new Circle(65);                          break;
-      case "triangle":   this.figure.shape = new Triangle(75, 75, 75);                break;
-      case "rectangle":  this.figure.shape = new Rectangle(75, 10);                   break;
+      case     "circle": this.figure.shape = new Circle(this.position, 65);           break;
+      case   "triangle": this.figure.shape = new Triangle(this.position, 75, 75, 75); break;
+    //case  "rectangle": this.figure.shape = new Rectangle(this.position, 75, 10);    break;
       default: break;
     }
 
@@ -87,5 +100,5 @@ class Main {
   }
 }
 
-export type { PossShape };
+export type { PossShape, Point };
 export default Main;

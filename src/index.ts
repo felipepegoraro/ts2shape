@@ -25,12 +25,9 @@ shape.addEventListener("change", (_: any) => {
   run.draw(colorSelect.value);
 });
 
-
-// let timeOut = null;
 const ms = 550;
 
 posX.addEventListener('input', (event) => {
-  // timeOut = 
   setTimeout(() => {
     run.handlePosition(event as InputEvent, "x")
     run.draw(colorSelect.value);
@@ -38,11 +35,16 @@ posX.addEventListener('input', (event) => {
 });
 
 posY.addEventListener('input', (event) => {
-  // timeOut = 
   setTimeout(() => {
     run.handlePosition(event as InputEvent, "y")
     run.draw(colorSelect.value);
   }, ms);
+});
+
+run.canvasUpdateWidth(canvas);
+window.addEventListener("resize", () => {
+  run.canvasUpdateWidth(canvas);
+  run.draw(colorSelect.value);
 });
 
 run.draw(colorSelect.value);

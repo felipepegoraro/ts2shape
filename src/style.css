@@ -42,6 +42,12 @@ canvas {
   gap: 30px;
 }
 
+@media screen and (max-width: 800px){
+  #app {
+    flex-direction: column;
+  }
+}
+
 
 #config-color {
   padding: 10px 0px;
@@ -64,4 +70,9 @@ canvas {
 #select-color::-webkit-color-swatch {
   border: none;
   border-radius: 50%;
+}
+
+input#pos-x, input#pos-y {
+  margin: 7px;
+  width: 50px;
 }

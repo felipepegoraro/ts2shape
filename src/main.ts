@@ -28,7 +28,17 @@ class Main {
       kind: "circle",
       shape: new Circle(this.position, 75)
     }
+  }
 
+  canvasUpdateWidth(canvas: HTMLCanvasElement){
+    const w = window.innerWidth;
+    const perc = 0.4;
+    const wperc = w * perc;
+
+    [canvas.width, canvas.height] = (w < 800) ? [300, 300] : [wperc, wperc]
+
+    const [cx, cy] = [canvas.width/2, canvas.height/2]
+    this.position = {x: cx, y: cy};
   }
 
   handlePosition(event: InputEvent, axis: "x" | "y"){
@@ -72,7 +82,7 @@ class Main {
     this.context.ctx.clearRect(0, 0,  this.context.width, this.context.height)
 
     switch (this.figure.kind) {
-      case "mandelbrot": this.figure.shape = new Mandelbrot(this.context.width, 300); break;
+      case "mandelbrot": this.figure.shape = new Mandelbrot(this.context.ctx.canvas.width, 300); break;
       case     "circle": this.figure.shape = new Circle(this.position, 65);           break;
       case   "triangle": this.figure.shape = new Triangle(this.position, 75, 75, 75); break;
     //case  "rectangle": this.figure.shape = new Rectangle(this.position, 75, 10);    break;

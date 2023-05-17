@@ -15,7 +15,7 @@ class Mendelbrot implements Shape {
     this.zoom = {x: this.size/1.1, y: -this.size/1.1} as const;
     
     // unused
-    this.position = {x: 300, y: 300};
+    this.position = {x: this.size, y: this.size};
   }
 
   colorConvert(r: number, g: number, b: number): string {

@@ -3,13 +3,13 @@ import Circle from './types/Circle'
 import Mandelbrot from './types/Mandelbrot'
 import Triangle from './types/Triangle';
 import { Point } from './types/Shape';
-// import Rectangle from './types/Rectangle';
+import Rectangle from './types/Rectangle';
 
 type EasyShapes =
   | { kind:     "circle"; shape:     Circle }
   | { kind:   "triangle"; shape:   Triangle }
   | { kind: "mandelbrot"; shape: Mandelbrot }
-//| { kind:  "rectangle"; shape:  Rectangle }
+  | { kind:  "rectangle"; shape:  Rectangle }
 
 type PossShape = EasyShapes['kind'];
 
@@ -84,8 +84,8 @@ class Main {
     switch (this.figure.kind) {
       case "mandelbrot": this.figure.shape = new Mandelbrot(this.context.ctx.canvas.width, 300); break;
       case     "circle": this.figure.shape = new Circle(this.position, 65);           break;
-      case   "triangle": this.figure.shape = new Triangle(this.position, 75, 75, 75); break;
-    //case  "rectangle": this.figure.shape = new Rectangle(this.position, 75, 10);    break;
+      case   "triangle": this.figure.shape = new Triangle(this.position, 85, 85, 85); break;
+      case  "rectangle": this.figure.shape = new Rectangle(this.position, 75, 75);    break;
       default: break;
     }
 

@@ -4,7 +4,7 @@ class Circle implements Shape {
   private readonly radius: number;
   position: Point;
 
-  constructor(position: { x: number, y: number }, radius: number){
+  constructor(position: Point, radius: number){
     this.radius = radius;
     this.position = position;
   }

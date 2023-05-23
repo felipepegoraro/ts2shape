@@ -11,4 +11,4 @@ npm i
 npm run dev
 ```
 
-obs: clique no canvas para aplicar zoom no fracal.
+obs: clique no canvas para aplicar zoom no fractal.

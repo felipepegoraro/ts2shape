@@ -8,14 +8,14 @@ import Rectangle from './types/Rectangle';
 type EasyShapes =
   | { kind:     "circle"; shape:     Circle }
   | { kind:   "triangle"; shape:   Triangle }
-  | { kind: "mandelbrot"; shape: Mandelbrot }
   | { kind:  "rectangle"; shape:  Rectangle }
+  | { kind: "mandelbrot"; shape: Mandelbrot }
 
 type PossShape = EasyShapes['kind'];
 
 class Main {
-  private figure: EasyShapes
-  private context: TCanvas;
+  private figure:   EasyShapes
+  private context:  TCanvas;
   private position: Point;
 
   constructor(){
@@ -86,23 +86,21 @@ class Main {
 
     switch (this.figure.kind) {
       case "mandelbrot": this.figure.shape = new Mandelbrot(this.context.ctx.canvas.width, 300); break;
-      case     "circle": this.figure.shape = new Circle(this.position, 65);           break;
-      case   "triangle": this.figure.shape = new Triangle(this.position, 85, 85, 85); break;
-      case  "rectangle": this.figure.shape = new Rectangle(this.position, 75, 75);    break;
+      case     "circle": this.figure.shape = new Circle(this.position, 65);                      break;
+      case   "triangle": this.figure.shape = new Triangle(this.position, 85, 85, 85);            break;
+      case  "rectangle": this.figure.shape = new Rectangle(this.position, color, 75, 75);        break;
       default: break;
     }
 
     this.context.ctx.clearRect(0, 0, this.context.width, this.context.height);
     requestAnimationFrame(() => {
       this.figure.shape.drawFigure(this.context.ctx);
-      if (this.figure.kind !== "mandelbrot"){
-        this.fillShape(true, color);
-      }
+      this.fillShape((this.figure.kind !== "mandelbrot"), color);
     });
   }
 
   handleClick(canvas: HTMLCanvasElement, event: MouseEvent): void {
-    if (this.figure.kind == "mandelbrot"){
+    if (this.figure.kind === "mandelbrot"){
       const zoomFactor = 1.5;
       const rect = canvas.getBoundingClientRect();
       const [x, y] = [event.clientX - rect.left, event.clientY - rect.top];

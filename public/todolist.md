@@ -1,3 +1,10 @@
-- [x]: mandelbrot: corrigir comportamento zoom
-- [ ]: corrigir bug no rectangle
-- [x]: aplicar cores (bug)
+- [x] mandelbrot: corrigir comportamento zoom
+- [x] corrigir bug no rectangle
+- [x] aplicar cores (bug)
+- [ ] mandelbrot -> figure no
+    - localhost: ok
+    - deploy: bug
+- [ ] criar classes: GUI, Easy, Trig, Fractal
+- [ ] converter para typescript código /public/trig.html
+- [ ] renderizar GUI baseado nas 3 classes
+- [ ] criar um render simulando plasma

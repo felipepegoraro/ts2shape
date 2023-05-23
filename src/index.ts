@@ -25,7 +25,7 @@ shape.addEventListener("change", (_: any) => {
   run.draw(colorSelect.value);
 });
 
-const ms = 550;
+const ms = 600;
 
 posX.addEventListener('input', (event) => {
   setTimeout(() => {

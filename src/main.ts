@@ -42,9 +42,12 @@ class Main {
   }
 
   handlePosition(event: InputEvent, axis: "x" | "y"){
+    const invertY = (y: number) => this.context.height - y;
     const target = event.target as HTMLInputElement;
     const value = Number(target.value);
-    this.position[axis] = value;
+    this.position[axis] = (axis == "y") 
+      ? invertY(value)
+      : value;
     console.log(this.position)
   }
 

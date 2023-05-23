@@ -9,14 +9,21 @@ class Rectangle implements Shape {
     this.L = width;
     this.h = height;
     this.position = {
-      x: position.x - (this.L/2),
-      y: position.y - (this.h/2)
+      x: position.x - this.L/2,
+      y: position.y - this.h/2
     }
   }
 
   drawFigure(ctx: CanvasRenderingContext2D): void {
     ctx.beginPath();
-    ctx.fillRect(this.position.x, this.position.y, this.L, this.h)
+
+    ctx.fillRect(
+      this.position.x,
+      this.position.y,
+      this.L,
+      this.h
+    )
+
     ctx.closePath();
     ctx.stroke();
   }

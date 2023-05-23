@@ -1,0 +1,83 @@
+<!-- TODO: 
+  converter para typescript
+  adicionar como classe TrigPatterns
+  criar classe GUI
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>canvas test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <canvas id="app-canvas" height="600" width="600"></canvas>
+
+    <div>
+      <form>
+        <label for="fn_num">Selecione uma função seno:</label>
+        <select id="fn_num">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </form>
+    </div>
+
+  </body>
+  <script>
+    function colorConvertV2(r, g, b) {
+      return `#${
+        r.toString(16).padStart(2, '0') + 
+        g.toString(16).padStart(2, '0') + 
+        b.toString(16).padStart(2, '0')
+      }`
+    }
+
+    function set_pixel_color(ctx, x, y, r, g, b) {
+      const colorCanvas = colorConvertV2(r,g,b);
+      ctx.fillStyle = colorCanvas;
+      ctx.fillRect(x, y, 1, 1);
+    }
+
+    function draw_pattern_with_sin(ctx, fn_i){
+      const w = ctx.canvas.width;
+      const h = ctx.canvas.height;
+      const n = 128;
+
+      let focus = (fn_i != 4);
+
+      const all_fn = [
+        (x, y, w, h) => Math.sin(x/8),
+        (x, y, w, h) => Math.sin((x-y)/8),
+        (x, y, w, h) => Math.sin(-Math.sqrt((x-w/2)*(x-w/2)+(y-h/2)*(y-h/2))/8),
+        (x, y, w, h) => Math.sin(x/5)+Math.cos(y/5),
+        (x, y, w, h) => Math.cos((x/w)*Math.PI)+Math.sin((y/h))*2.392,
+      ]
+
+      if (fn_i < 0 || fn_i >= all_fn.length) throw new Error("invalid index");
+
+      for(let y = 0; y < w; y++){
+        for(let x = 0; x < h; x++){
+          let color = Math.round(n + (n * (focus ? 3 : 1) * all_fn[fn_i](x, y, w, h)))
+          set_pixel_color(contexto, x, y, color, color, color)
+        }
+      }
+    }
+
+    const canvas = document.getElementById("app-canvas");
+    const contexto = canvas.getContext("2d")
+
+    const fn_num_selected = document.getElementById("fn_num");
+    fn_num_selected.addEventListener("change", (event) =>{
+      console.log(event.target.value)
+      draw_pattern_with_sin(contexto, event.target.value);
+    })
+
+    draw_pattern_with_sin(contexto, 0);
+  </script>
+</html>
+

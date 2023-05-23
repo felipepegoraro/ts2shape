@@ -1,7 +1,7 @@
 - [x] mandelbrot: corrigir comportamento zoom
 - [x] corrigir bug no rectangle
 - [x] aplicar cores (bug)
-- [ ] mandelbrot -> figure no
+- [x] mandelbrot -> figure no
     - localhost: ok
     - deploy: bug
 - [ ] criar classes: GUI, Easy, Trig, Fractal

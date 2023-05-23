@@ -85,14 +85,14 @@ class Main {
     this.context.ctx.clearRect(0, 0,  this.context.width, this.context.height)
 
     switch (this.figure.kind) {
-      case "mandelbrot": this.figure.shape = new Mandelbrot(this.context.ctx.canvas.width, 300); break;
       case     "circle": this.figure.shape = new Circle(this.position, 65);                      break;
       case   "triangle": this.figure.shape = new Triangle(this.position, 85, 85, 85);            break;
       case  "rectangle": this.figure.shape = new Rectangle(this.position, color, 75, 75);        break;
+      case "mandelbrot": this.figure.shape = new Mandelbrot(this.context.ctx.canvas.width, 300); break;
       default: break;
     }
 
-    // this.context.ctx.clearRect(0, 0, this.context.width, this.context.height);
+    this.context.ctx.clearRect(0, 0, this.context.width, this.context.height);
     requestAnimationFrame(() => {
       this.context.ctx.clearRect(0, 0, this.context.width, this.context.height);
       this.figure.shape.drawFigure(this.context.ctx);

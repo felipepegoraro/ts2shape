@@ -92,8 +92,9 @@ class Main {
       default: break;
     }
 
-    this.context.ctx.clearRect(0, 0, this.context.width, this.context.height);
+    // this.context.ctx.clearRect(0, 0, this.context.width, this.context.height);
     requestAnimationFrame(() => {
+      this.context.ctx.clearRect(0, 0, this.context.width, this.context.height);
       this.figure.shape.drawFigure(this.context.ctx);
       this.fillShape((this.figure.kind !== "mandelbrot"), color);
     });

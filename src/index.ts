@@ -41,10 +41,11 @@ posY.addEventListener('input', (event) => {
   }, ms);
 });
 
-run.canvasUpdateWidth(canvas);
+
 window.addEventListener("resize", () => {
   run.canvasUpdateWidth(canvas);
   run.draw(colorSelect.value);
 });
 
-run.draw(colorSelect.value);
+run.canvasUpdateWidth(canvas);
+window.onload = () => run.draw(colorSelect.value);
